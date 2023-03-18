@@ -11,22 +11,14 @@ possibilidades = [
     ['1','5','9'],
     ['3','5','7'],]
 
-ganhador = []
-
-def verifica_ganhador(lista):
-    for i in lista:
-        for y in range(0,7):
-            for w in possibilidades[y]:
-                if i == w:
-                    ganhador.append(i)
-    return print(ganhador)
-
 sg.theme('LightBlue3')
 
 layout = [[sg.Text('Jogo da velha')],
-          [sg.Button('', image_data=img_base64.button_empy, key='1'), sg.Button('', image_data=img_base64.button_empy, key='2'), sg.Button('', image_data=img_base64.button_empy, key='3'), sg.Button('', image_data=img_base64.button_2_p, key='2p')],
+          [sg.Button('', image_data=img_base64.button_empy, key='1', enable_events=True), sg.Button('', image_data=img_base64.button_empy, key='2'), sg.Button('', image_data=img_base64.button_empy, key='3'), sg.Button('', image_data=img_base64.button_2_p, key='2p')],
           [sg.Button('', image_data=img_base64.button_empy, key='4'), sg.Button('', image_data=img_base64.button_empy, key='5'), sg.Button('', image_data=img_base64.button_empy, key='6'), sg.Button('', image_data=img_base64.button_maquina, key='machine')],
           [sg.Button('', image_data=img_base64.button_empy, key='7'), sg.Button('', image_data=img_base64.button_empy, key='8'), sg.Button('', image_data=img_base64.button_empy, key='9'), sg.Button('', image_data=img_base64.button_zerar, key='zerar')]]
+
+verifica_jogada = {1: False, 2: False, 3: False, 4: False, 5: False, 6: False, 7: False, 8: False, 9: False}
 
 window = sg.Window('Jogo da Velha', layout, grab_anywhere=True)
 player = 1
@@ -52,19 +44,17 @@ while True:
 
     elif event and player == 1:
         window[event].update(image_data=img_base64.button_x)
+        verifica_jogada[int(event)] = event
+        print(verifica_jogada)
         x.append(event)
         jogadas += 1
         player = 2
-        if jogadas > 3:
-            verifica_ganhador(x)
 
     elif event and player == 2:
         window[event].update(image_data=img_base64.button_o)
         o.append(event)
         jogadas += 1
         player = 1
-        if jogadas > 3:
-            verifica_ganhador(o)
 
     # print(f'Casa {event} - Player {player} - N° Jogadas {jogadas}')
     # print(f'X = {x}')

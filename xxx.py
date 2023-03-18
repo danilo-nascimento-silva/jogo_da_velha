@@ -1,11 +1,5 @@
-l1 = [1, 2, 3, 5]
-l2 = [1, 2, 3]
-l3 = []
+verifica_jogada = {1: False, 2: False, 3: False, 4: False, 5: False, 6: False, 7: False, 8: False, 9: False}
 
-for i in l1:
-    for y in l2:
-        if i == y:
-            l3.append(i)
-
-if len(l3) == 3:
-    print('gg')
+print(verifica_jogada)
+verifica_jogada[1] = True
+print(verifica_jogada)
