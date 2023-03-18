@@ -14,12 +14,14 @@ possibilidades = [
 ganhador = []
 
 def verifica_ganhador(lista):
+    verifica = []
     for i in lista:
-        for y in range(0,7):
-            for w in possibilidades[y]:
-                if i == w:
-                    ganhador.append(i)
-    return print(ganhador)
+        for x in range(0, 7):
+            for y in possibilidades[x]:
+                if i == y:
+                    print(i)
+                    verifica.append(i)
+
 
 sg.theme('LightBlue3')
 
