@@ -27,7 +27,7 @@ def verifica_ganhador_o():
 
 sg.theme('LightBlue3')
 
-layout = [[sg.Text('Jogo da velha')],
+layout = [[sg.Text(' #Jogo Da Velha#', font=('IMPACT', 30), text_color=('black'))],
           [sg.Button('', image_data=img_base64.button_empy, key='1'), sg.Button('', image_data=img_base64.button_empy, key='2'), sg.Button('', image_data=img_base64.button_empy, key='3'), sg.Button('', image_data=img_base64.button_2_p, key='2p')],
           [sg.Button('', image_data=img_base64.button_empy, key='4'), sg.Button('', image_data=img_base64.button_empy, key='5'), sg.Button('', image_data=img_base64.button_empy, key='6'), sg.Button('', image_data=img_base64.button_maquina, key='machine')],
           [sg.Button('', image_data=img_base64.button_empy, key='7'), sg.Button('', image_data=img_base64.button_empy, key='8'), sg.Button('', image_data=img_base64.button_empy, key='9'), sg.Button('', image_data=img_base64.button_zerar, key='zerar')]]
@@ -49,13 +49,13 @@ while True:
     elif event == 'machine':
         continue #Vai chamar uma função para jogar contra um Bot 
 
-    elif event == 'zerar' or event == 'ok':
+    elif event == 'zerar':
         player = 1
         vencedor = False
+        jogadas = 0
         for i in range(1,10):
             verifica_jogada[i] = 0
-            i = str(i)
-            window[i].update(image_data=img_base64.button_empy)
+            window[str(i)].update(image_data=img_base64.button_empy)
 
     elif event and player == 1:
         if verifica_jogada[int(event)] == 1 or verifica_jogada[int(event)] == 2:
@@ -82,13 +82,16 @@ while True:
     
     if vencedor == 1:
         for i in range(1,10):
-            i = str(i)
-            window[i].update(image_data=img_base64.button_x)    
+            window[str(i)].update(image_data=img_base64.button_x)    
 
     if vencedor == 2:
         for i in range(1,10):
-            i = str(i)
-            window[i].update(image_data=img_base64.button_o)        
+            window[str(i)].update(image_data=img_base64.button_o)   
+
+    if jogadas == 5 and vencedor == 0:
+        for i in range(1,10):      
+            verifica_jogada[i] = 0
+            window[str(i)].update(image_data=img_base64.button_v)
 
     if event == sg.WIN_CLOSED:
         break
