@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import img_base64
+import random
 
 def verifica_ganhador_x():
     global vencedor 
@@ -24,6 +25,16 @@ def verifica_ganhador_o():
     elif verifica_jogada[1] == 2 and verifica_jogada[5]  == 2 and verifica_jogada[9] == 2: vencedor = 2
     elif verifica_jogada[3] == 2 and verifica_jogada[5]  == 2 and verifica_jogada[7] == 2: vencedor = 2
     return 
+
+def ia():
+    while True:
+        rand = random.randrange(1,9)
+        if verifica_jogada[rand] != 0:
+            continue
+        else:
+            print(f'Joguei na posição {rand}')
+            jogada = 2
+            break
 
 sg.theme('LightBlue3')
 
